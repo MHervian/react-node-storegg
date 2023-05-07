@@ -1,4 +1,5 @@
 import { useEffect } from 'react';
+
 import Footer from '../../components/organisms/Footer';
 import Navbar from '../../components/organisms/Navbar';
 import TopUpForm from '../../components/organisms/TopUpForm';
@@ -11,10 +12,15 @@ interface DetailProps {
   nominals: NominalsTypes[];
   payments: PaymentTypes[];
 }
+
 export default function Detail({ dataItem, nominals, payments }: DetailProps) {
   useEffect(() => {
+    console.log("dataItem: " + dataItem);
+    console.log("nominals: " + nominals);
+    console.log("payments: " + payments);
     localStorage.setItem('data-item', JSON.stringify(dataItem));
   }, []);
+
   return (
     <>
       <Navbar />
@@ -42,6 +48,7 @@ export default function Detail({ dataItem, nominals, payments }: DetailProps) {
 }
 
 export async function getStaticPaths() {
+  console.log("getStaticPaths");
   const data = await getFeaturedGame();
   const paths = data.map((item: GameItemTypes) => ({
     params: {
@@ -61,6 +68,7 @@ interface GetStaticProps {
 }
 
 export async function getStaticProps({ params }: GetStaticProps) {
+  console.log("getStaticProps");
   const { id } = params;
   const data = await getDetailVoucher(id);
   return {

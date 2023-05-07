@@ -25,8 +25,8 @@ export default function SignInForm() {
         toast.error(response.message);
       } else {
         toast.success('Login Berhasil');
-        const { token } = response.data;
-        const tokenBase64 = btoa(token);
+        const { token } = response.data.data; // penyebab, isi struktur object yang duplikat
+        const tokenBase64 = btoa(token); 
         Cookies.set('token', tokenBase64, { expires: 1 });
         router.push('/');
       }

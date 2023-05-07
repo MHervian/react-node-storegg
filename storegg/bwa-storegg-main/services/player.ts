@@ -8,6 +8,9 @@ const API_VERSION = 'api/v1';
 export async function getFeaturedGame() {
   const URL = 'players/landingpage';
 
+  console.log("dari services/player/getFeaturedGame()");
+  console.log(`${ROOT_API}/${API_VERSION}/${URL}`);
+
   const response = await axios.get(`${ROOT_API}/${API_VERSION}/${URL}`);
   const axiosResponse = response.data;
 

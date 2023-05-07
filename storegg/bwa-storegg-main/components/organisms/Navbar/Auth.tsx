@@ -63,6 +63,7 @@ export default function Auth() {
       </li>
     );
   }
+
   return (
     <li className="nav-item my-auto">
       <Link href="/sign-in">

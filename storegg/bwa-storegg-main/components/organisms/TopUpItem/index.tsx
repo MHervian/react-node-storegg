@@ -12,6 +12,7 @@ export default function TopUpItem(props : TopUpItemProps) {
   const { type, data } = props;
 
   const ROOT_IMG = process.env.NEXT_PUBLIC_IMG;
+  console.log(ROOT_IMG);
 
   if (type === 'desktop') {
     return (

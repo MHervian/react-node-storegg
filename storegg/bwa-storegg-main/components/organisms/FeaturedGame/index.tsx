@@ -8,6 +8,7 @@ export default function FeaturedGame() {
 
   const getFeatureGameList = useCallback(async () => {
     const data = await getFeaturedGame();
+    console.log(data);
     setGameList(data);
   }, [getFeaturedGame]);
 
@@ -26,7 +27,8 @@ export default function FeaturedGame() {
           Games This Year
         </h2>
         <div
-          className="d-flex flex-row flex-lg-wrap overflow-setting justify-content-lg-between gap-lg-3 gap-4"
+          // className="d-flex flex-row flex-lg-wrap overflow-setting justify-content-lg-between gap-lg-3 gap-4"
+          className="d-flex flex-row flex-lg-wrap overflow-setting gap-lg-3 gap-4"
           data-aos="fade-up"
         >
           {gameList.map((item: GameItemTypes) => (
