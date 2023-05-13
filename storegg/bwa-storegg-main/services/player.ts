@@ -22,6 +22,7 @@ export async function getDetailVoucher(id: string) {
 
   const response = await axios.get(`${ROOT_API}/${API_VERSION}/${URL}`);
   const axiosResponse = response.data;
+  console.log(axiosResponse.data.payments);
 
   return axiosResponse.data;
 }
