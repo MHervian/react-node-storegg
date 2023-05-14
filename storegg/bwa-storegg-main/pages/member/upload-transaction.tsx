@@ -1,13 +1,11 @@
 import SideBar from '../../components/organisms/SideBar';
-import TransactionContent from '../../components/organisms/TransactionContent';
+import UploadTransaction from '../../components/organisms/UploadTransaction';
 
-export default function UploadTransaction() {
+export default function UploadContent() {
   return (
     <section className="transactions overflow-auto">
       <SideBar activeMenu="upload-transaction" />
-      <main className="main-wrapper">
-        <h2>Upload Transaction</h2>
-      </main>
+      <UploadTransaction />
     </section>
   );
 }

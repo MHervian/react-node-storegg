@@ -1,4 +1,5 @@
 import Image from 'next/image';
+
 import CheckoutConfirmation from '../components/organisms/CheckoutConfirmation';
 import CheckoutDetail from '../components/organisms/CheckoutDetail';
 import CheckoutItem from '../components/organisms/CheckoutItem';
@@ -45,6 +46,6 @@ export async function getServerSideProps({ req }: GetServerSideProps) {
   }
 
   return {
-    props: {},
+    props: {}, // harus return {}, karena mengikuti rule serializing
   };
 }

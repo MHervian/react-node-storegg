@@ -1,7 +1,9 @@
 import { useState } from 'react';
 import { useRouter } from 'next/router';
 import { toast } from 'react-toastify';
+
 import { BanksTypes, NominalsTypes, PaymentTypes } from '../../../services/data-types';
+
 import NominalItem from './NominalItem';
 import PaymentItem from './PaymentItem';
 
@@ -40,7 +42,7 @@ export default function TopUpForm(props: TopUpFormProps) {
         paymentItem,
       };
       localStorage.setItem('data-topup', JSON.stringify(data));
-      router.push('/checkout');
+      router.push('/checkout'); // next ke halaman checkout
     }
   };
 

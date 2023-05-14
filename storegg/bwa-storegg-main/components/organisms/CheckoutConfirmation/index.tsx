@@ -34,10 +34,11 @@ export default function CheckoutConfirmation() {
       toast.error(response.message);
     } else {
       // [CODE UPDATE] memindahkan router.push sebelum toast
+      //toast.success('Checkout Berhasil');
       router.push('/complete-checkout');
-      toast.success('Checkout Berhasil');
     }
   };
+
   return (
     <>
       <label className="checkbox-label text-lg color-palette-1">

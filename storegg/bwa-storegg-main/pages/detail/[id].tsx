@@ -4,6 +4,7 @@ import Footer from '../../components/organisms/Footer';
 import Navbar from '../../components/organisms/Navbar';
 import TopUpForm from '../../components/organisms/TopUpForm';
 import TopUpItem from '../../components/organisms/TopUpItem';
+
 import { GameItemTypes, NominalsTypes, PaymentTypes } from '../../services/data-types';
 import { getDetailVoucher, getFeaturedGame } from '../../services/player';
 

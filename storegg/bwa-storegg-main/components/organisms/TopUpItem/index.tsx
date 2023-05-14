@@ -12,9 +12,9 @@ export default function TopUpItem(props : TopUpItemProps) {
   const { type, data } = props;
 
   const ROOT_IMG = process.env.NEXT_PUBLIC_IMG;
-  console.log(ROOT_IMG);
+  console.log("Lokasi source imagesnya:",ROOT_IMG);
 
-  if (type === 'desktop') {
+  if (type === 'desktop') { // type displaynya desktop
     return (
       <div className="pb-50 d-md-block d-none">
         <h2 className="text-4xl fw-bold color-palette-1 text-start mb-10 mt-10">
@@ -28,6 +28,7 @@ export default function TopUpItem(props : TopUpItemProps) {
       </div>
     );
   }
+
   return (
     <div className="row align-items-center">
       <div className="col-md-12 col-4">

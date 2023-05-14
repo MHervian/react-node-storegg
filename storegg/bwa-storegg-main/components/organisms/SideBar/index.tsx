@@ -23,7 +23,7 @@ export default function SideBar(props: SideBarProps) {
         <div className="menus">
           <MenuItem title="Overview" icon="ic-menu-overview" active={activeMenu === 'overview'} href="/member" />
           <MenuItem title="Transactions" icon="ic-menu-transaction" active={activeMenu === 'transactions'} href="/member/transactions" />
-          <MenuItem title="Upload" icon="ic-menu-transaction" href="/member/upload-transaction" />
+          <MenuItem title="Upload" icon="ic-menu-transaction" active={activeMenu === 'upload-transaction'} href="/member/upload-transaction" />
           <MenuItem title="Messages" icon="ic-menu-messages" href="/member" />
           <MenuItem title="Card" icon="ic-menu-card" href="/member" />
           <MenuItem title="Rewards" icon="ic-menu-reward" href="/member" />
