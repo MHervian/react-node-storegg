@@ -154,15 +154,18 @@ module.exports = {
   history: async (req, res) => {
     try {
       const { status = "" } = req.query;
+      console.log(status);
 
       let criteria = {};
 
       if (status.length) {
         criteria = {
           ...criteria,
-          status: { $regex: `${status}`, $options: "1" },
+          // status: { $regex: `${status}`, $options: "1" },
+          status: `${status}`,
         };
       }
+      console.log(criteria);
 
       if (req.player._id) {
         criteria = {
@@ -170,8 +173,10 @@ module.exports = {
           player: req.player._id,
         };
       }
+      console.log(criteria);
 
       const history = await Transaction.find(criteria);
+      console.log("Lanjut");
 
       let total = await Transaction.aggregate([
         { $match: criteria },
@@ -182,6 +187,7 @@ module.exports = {
           },
         },
       ]);
+      console.log("Lanjut 2");
 
       res.status(200).json({
         status: false,
@@ -361,4 +367,16 @@ module.exports = {
         .json({ message: error.message || "Internal server error" });
     }
   },
+  // controller upload bukti pembayaran
+  uploadBukti: async (req, res) => {
+    try {
+      // melakukan apapun disini
+
+      
+    } catch (error) {
+      res
+        .status(500)
+        .json({ message: error.message || "Internal server error" });
+    }
+  }
 };

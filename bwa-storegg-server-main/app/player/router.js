@@ -12,6 +12,7 @@ const {
   dashboard,
   profile,
   editProfile,
+  uploadBukti,
 } = require("./controller");
 const { isLoginPlayer } = require("../middleware/auth");
 
@@ -30,5 +31,7 @@ router.put(
   multer({ dest: os.tmpdir() }).single("image"),
   editProfile
 );
+// route buat upload bukti
+router.put("/upload-bukti", isLoginPlayer, uploadBukti);
 
 module.exports = router;

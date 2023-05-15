@@ -1,11 +1,11 @@
 import SideBar from '../../components/organisms/SideBar';
-import UploadTransaction from '../../components/organisms/UploadTransaction';
+import UploadBuktiContent from '../../components/organisms/UploadTransaction';
 
 export default function UploadContent() {
   return (
     <section className="transactions overflow-auto">
       <SideBar activeMenu="upload-transaction" />
-      <UploadTransaction />
+      <UploadBuktiContent />
     </section>
   );
 }

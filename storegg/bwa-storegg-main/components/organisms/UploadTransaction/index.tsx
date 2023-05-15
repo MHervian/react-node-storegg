@@ -1,18 +1,36 @@
 import Image from 'next/image';
-import { useState } from 'react';
+import { useCallback, useState, useEffect } from 'react';
 import { toast } from 'react-toastify';
 
-export default function UploadTransaction() {
-    const [pilihan, setPilihan] = useState("");
+import { getMemberTransactions } from '../../../services/member';
+import { HistoryTransactionTypes } from '../../../services/data-types';
+
+export default function UploadBuktiContent() {
+    const [minimarket, setMinimarket] = useState("");
+    const [order, setOrder] = useState("");
     const [image, setImage] = useState<any>("");
     const [imagePreview, setImagePreview] = useState<any>(null);
+    
+    const [transactions, setTransactions] = useState([]);
+    const getMemberTransactionAPI = useCallback(async (value) => {
+        const response = await getMemberTransactions(value);
+        if (response.error) {
+            toast.error(response.message);
+        } else {
+            setTransactions(response.data.data);
+            console.log(response.data.data);
+        }
+    }, []);
+
+    useEffect(() => {
+        getMemberTransactionAPI('pending');
+    }, []);
 
     const onSubmit = async () => {
-        console.log(pilihan);
-        console.log(imagePreview);
-        if (pilihan == "" || imagePreview == null) {
+        console.log(image);
+        if (minimarket == "" || imagePreview == null) {
             // tampilkan error
-            toast.error('Upload gagal. Cek ulang yang diisi'); 
+            toast.error('Upload gagal. Cek ulang yang diisi');
         } else {
             // lanjut upload
             toast.success('Upload Berhasil');
@@ -31,9 +49,9 @@ export default function UploadTransaction() {
                             name="category"
                             className="form-select d-block w-100 rounded-pill text-lg"
                             aria-label="Alfa-indo-payment"
-                            value={pilihan}
+                            value={minimarket}
                             onChange={(event) => {
-                                setPilihan(event.target.value);
+                                setMinimarket(event.target.value);
                             }}
                         >
                             <option key="none" value="">Pilih struk</option>
@@ -41,10 +59,30 @@ export default function UploadTransaction() {
                             <option key="Alfamart" value="Alfamart">Alfamart</option>
                         </select>
                     </div>
+                    <div className="mb-20">
+                        <select
+                            id="idTransaction"
+                            name="idTransaction"
+                            className="form-select d-block w-100 rounded-pill text-lg"
+                            aria-label="pilih-transaction"
+                            value={order}
+                            onChange={(event) => {
+                                setOrder(event.target.value);
+                            }}
+                        >
+                            <option key="none" value="">Pilih Order ID Transaksi</option>
+                            {transactions.map((transaction: HistoryTransactionTypes) => (
+                                <option key={`${transaction._id}`} value={`${transaction._id}`}>
+                                    {`${transaction._id}`} - 
+                                    {`${transaction.historyVoucherTopup.gameName}`}
+                                </option>
+                            ))}
+                        </select>
+                    </div>
                     <div className="mb-20 pb-20">
                         <div>
                             <label>
-                                {imagePreview ? <img src={imagePreview} style={{width: "545px", height: "445px"}} alt="upload" /> : <Image src="/icon/upload.svg" width={120} height={120} alt="upload" />}
+                                {imagePreview ? <img src={imagePreview} style={{ width: "545px", height: "445px" }} alt="upload" /> : <Image src="/icon/upload.svg" width={120} height={120} alt="upload" />}
                             </label>
                             <input
                                 id="avatar"
