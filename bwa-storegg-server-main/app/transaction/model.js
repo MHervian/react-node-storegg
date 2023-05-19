@@ -50,6 +50,10 @@ const transactionSchema = mongoose.Schema(
       type: Number,
       default: 0,
     },
+    uploadBukti: {    // <= saya tambah properti ini
+      type: String,
+      default: "",
+    },
     status: {
       type: String,
       enum: ["pending", "success", "failed"],

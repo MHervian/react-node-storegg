@@ -91,3 +91,10 @@ export interface TopUpCategoriesTypes {
     value: number;
     name: string;
 }
+
+// data type interface for upload bukti pembayaran
+export interface UploadBuktiTypes {
+    _id: string;
+    transaction: string;
+    image: string;
+}
