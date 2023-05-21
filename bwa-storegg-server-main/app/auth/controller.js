@@ -10,7 +10,7 @@ module.exports = {
     try {
       const payload = req.body;
 
-      if (req.file) {
+      if (req.file) {   // check pendaftar apakah upload gambar avatarnya
         let tmp_path = req.file.path;
         let originalExt =
           req.file.originalname.split(".")[

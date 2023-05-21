@@ -1,6 +1,6 @@
 import axios from 'axios';
 import callAPI from '../config/api';
-import { CheckoutTypes, UploadBuktiTypes } from './data-types';
+import { CheckoutTypes } from './data-types';
 
 const ROOT_API = process.env.NEXT_PUBLIC_API;
 const API_VERSION = 'api/v1';
@@ -48,8 +48,8 @@ export async function setCheckout(data: CheckoutTypes) {
 }
 
 // method buat upload bukti pembayaran
-export async function uploadBuktiPembayaran(data: UploadBuktiTypes) {
-  const url = `${ROOT_API}/${API_VERSION}/players/upload-bukti`;
+export async function uploadBuktiPembayaran(data: FormData, id: String) {
+  const url = `${ROOT_API}/${API_VERSION}/players/${id}/upload-bukti`;
 
   return callAPI({
     url,

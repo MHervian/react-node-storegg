@@ -2,6 +2,7 @@ import Image from 'next/image';
 import { useCallback, useEffect, useState } from 'react';
 import { useRouter } from 'next/router';
 import { toast } from 'react-toastify';
+
 import { setSignUp } from '../services/auth';
 import { getGameCategory } from '../services/player';
 import { CategoryTypes } from '../services/data-types';
@@ -9,7 +10,7 @@ import { CategoryTypes } from '../services/data-types';
 export default function SignUpPhoto() {
   const [categories, setCategories] = useState([]);
   const [favorite, setFavorite] = useState('');
-  const [image, setImage] = useState<any>('');
+  const [image, setImage] = useState<any>('');  // value bertipe any untuk image
   const [imagePreview, setImagePreview] = useState<any>(null);
   const [localForm, setLocalForm] = useState({
     name: '',
@@ -36,7 +37,7 @@ export default function SignUpPhoto() {
   const onSubmit = async () => {
     const getLocalForm = await localStorage.getItem('user-form');
     const form = JSON.parse(getLocalForm!);
-    const data = new FormData();
+    const data = new FormData();  // pakai FormData untuk mendukung multipart/form-data
 
     data.append('image', image);
     data.append('email', form.email);
@@ -48,11 +49,15 @@ export default function SignUpPhoto() {
     data.append('status', 'Y');
     data.append('favorite', favorite);
 
+    console.log("Form Data");
+    data.forEach((value, key) => {
+      console.log(key, value);
+    })
+
     const result = await setSignUp(data);
     if (result.error) {
       toast.error(result.message);
     } else {
-      toast.success('Register Berhasil');
       router.push('/sign-up-success');
       // [CODE UPDATE] di tutorial saya simpan remove user-form disini,
       // saya rubah remove nya menjadi di halaman setelahnya.

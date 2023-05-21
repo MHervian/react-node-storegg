@@ -42,7 +42,7 @@ export interface UserTypes {
     username: string;
     email: string;
     name: string;
-    avatar:string;
+    avatar:string;  // ini pakai string
 }
 
 export interface JWTPayloadTypes {
@@ -90,11 +90,4 @@ export interface TopUpCategoriesTypes {
     _id: string;
     value: number;
     name: string;
-}
-
-// data type interface for upload bukti pembayaran
-export interface UploadBuktiTypes {
-    _id: string;
-    transaction: string;
-    image: string;
 }

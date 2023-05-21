@@ -9,6 +9,8 @@ export default function Profile() {
     name: '',
     email: '',
   });
+  const ROOT_API = process.env.NEXT_PUBLIC_API;
+
   useEffect(() => {
     const token = Cookies.get('token');
     if (token) {
@@ -20,7 +22,7 @@ export default function Profile() {
   }, []);
   return (
     <div className="user text-center pb-50 pe-30">
-      <img src={user.avatar} alt="profile" width="90" height="90" className="img-fluid mb-20" style={{ borderRadius: '100%' }} />
+      <img src={`${ROOT_API}/uploads/${user.avatar}`} alt="profile" width="90" height="90" className="img-fluid mb-20" style={{ borderRadius: '100%' }} />
       <h2 className="fw-bold text-xl color-palette-1 m-0">{user.name}</h2>
       <p className="color-palette-2 m-0">{user.email}</p>
     </div>

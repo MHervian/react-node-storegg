@@ -51,8 +51,8 @@ const transactionSchema = mongoose.Schema(
       default: 0,
     },
     uploadBukti: {    // <= saya tambah properti ini
-      type: String,
-      default: "",
+      name: {type: String, default: ''},
+      filename: {type: String, default: ''}
     },
     status: {
       type: String,

@@ -14,11 +14,11 @@ export default function CheckoutConfirmation() {
     const dataItem = JSON.parse(dataItemLocal!);
     const dataTopUp = JSON.parse(dataTopUpLocal!);
 
-    if (!checkbox) {
-      toast.error('Pastikan anda telah melakukan pembayaran');
-      // [CODE UPDATE] menggagalkan checkout jika checkbox false
-      return;
-    }
+    // if (!checkbox) {
+    //   toast.error('Pastikan anda telah melakukan pembayaran');
+    //   // [CODE UPDATE] menggagalkan checkout jika checkbox false
+    //   return;
+    // }
 
     const data = {
       voucher: dataItem._id,
@@ -41,11 +41,11 @@ export default function CheckoutConfirmation() {
 
   return (
     <>
-      <label className="checkbox-label text-lg color-palette-1">
+      {/* <label className="checkbox-label text-lg color-palette-1">
         I have transferred the money
         <input type="checkbox" checked={checkbox} onChange={() => setCheckBox(!checkbox)} />
         <span className="checkmark" />
-      </label>
+      </label> */}
       <div className="d-md-block d-flex flex-column w-100 pt-50">
         <button
           className="btn btn-confirm-payment rounded-pill fw-medium text-white border-0 text-lg"

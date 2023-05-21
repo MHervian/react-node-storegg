@@ -1,9 +1,11 @@
 import Link from 'next/link';
 import { useEffect } from 'react';
+import { toast } from 'react-toastify';
 
 export default function SignUpSuccess() {
   // [CODE UPDATE] saya menambahkan remove user-form disini
   useEffect(() => {
+    toast.success('Register Berhasil');   // [HERVIAN] toast ini pindah dari sign-up-photo
     localStorage.removeItem('user-form');
   }, []);
   return (

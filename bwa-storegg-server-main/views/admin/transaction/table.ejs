@@ -5,6 +5,7 @@
       <th>Nama Game</th>
       <th>Item</th>
       <th>Total harga</th>
+      <th>Bukti Bayar</th>
       <th>Status</th>
       <th>Nama Player</th>
       <th>Aksi</th>
@@ -33,7 +34,26 @@
         <%= transactions[i].historyVoucherTopup?.coinQuantity %> <%=
         transactions[i].historyVoucherTopup?.coinName %>
       </td>
-      <td><%= transactions[i].value %></td>
+      <td>Rp<%= transactions[i].value %></td>
+      <td>
+        <% if (transactions[i].uploadBukti.filename !== '') { %>
+          <ul class="list-inline">
+            <li class="list-inline-item">
+              <img
+                src="/uploads/bukti/<%= transactions[i].uploadBukti.filename %>"
+                alt="thumbnail"
+                width="48px"
+                height="48px"
+              />
+            </li>
+          </ul>
+          <%= transactions[i].uploadBukti.filename %>
+          <br />
+          <%= transactions[i].uploadBukti.name %>
+        <% } else { %>
+          Belum Upload Bukti
+        <% } %>
+      </td>
       <td>
         <% if (transactions[i].status === 'pending') { %>
         <span class="badge badge-warning"><%= transactions[i].status %></span>

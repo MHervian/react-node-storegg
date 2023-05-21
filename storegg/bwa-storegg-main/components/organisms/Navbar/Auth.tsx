@@ -11,6 +11,7 @@ export default function Auth() {
     avatar: '',
   });
   const router = useRouter();
+  const ROOT_API = process.env.NEXT_PUBLIC_API;
 
   useEffect(() => {
     const token = Cookies.get('token');
@@ -43,7 +44,7 @@ export default function Auth() {
             aria-expanded="false"
           >
             <img
-              src={user.avatar}
+              src={`${ROOT_API}/uploads/${user.avatar}`}
               className="rounded-circle"
               width="40"
               height="40"

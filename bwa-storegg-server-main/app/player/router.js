@@ -32,6 +32,10 @@ router.put(
   editProfile
 );
 // route buat upload bukti
-router.put("/upload-bukti", isLoginPlayer, uploadBukti);
+router.put("/:id/upload-bukti", 
+  isLoginPlayer, 
+  multer({ dest: os.tmpdir() }).single("image"), 
+  uploadBukti
+);
 
 module.exports = router;

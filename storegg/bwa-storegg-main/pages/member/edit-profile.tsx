@@ -3,8 +3,10 @@ import Cookies from 'js-cookie';
 import { useEffect, useState } from 'react';
 import { toast } from 'react-toastify';
 import { useRouter } from 'next/router';
+
 import SideBar from '../../components/organisms/SideBar';
 import Input from '../../components/atoms/Input';
+
 import { JWTPayloadTypes, UserTypes } from '../../services/data-types';
 import { updateProfile } from '../../services/member';
 
@@ -12,7 +14,7 @@ interface UserStateTypes {
   id: string;
   name: string;
   email: string;
-  avatar: any;
+  avatar: any;  // pakai tipe data any, untuk gambar
 }
 
 export default function EditProfile() {
@@ -24,6 +26,7 @@ export default function EditProfile() {
   });
   const [imagePreview, setImagePreview] = useState('/');
   const router = useRouter();
+  const ROOT_API = process.env.NEXT_PUBLIC_API;
 
   useEffect(() => {
     const token = Cookies.get('token');
@@ -40,6 +43,8 @@ export default function EditProfile() {
 
     data.append('image', user.avatar);
     data.append('name', user.name);
+    console.log(user.avatar);
+    console.log(user.name);
     const response = await updateProfile(data, user.id);
     if (response.error) {
       toast.error(response.message);
@@ -60,7 +65,7 @@ export default function EditProfile() {
                 <div className="image-upload">
                   <label htmlFor="avatar">
                     {imagePreview === '/' ? (
-                      <img src={user.avatar} alt="icon upload" width={90} height={90} style={{ borderRadius: '100%' }} />
+                      <img src={`${ROOT_API}/uploads/${user.avatar}`} alt="icon upload" width={90} height={90} style={{ borderRadius: '100%' }} />
                     ) : (
                       <img src={imagePreview} alt="icon upload" width={90} height={90} style={{ borderRadius: '100%' }} />
                     )}

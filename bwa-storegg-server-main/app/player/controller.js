@@ -291,7 +291,7 @@ module.exports = {
         payload.phoneNumber = phoneNumber;
       }
 
-      if (req.file) {
+      if (req.file) {   // check jika update pake upload avatar baru
         let tmp_path = req.file.path;
         let originalExt =
           req.file.originalname.split(".")[
@@ -370,9 +370,72 @@ module.exports = {
   // controller upload bukti pembayaran
   uploadBukti: async (req, res) => {
     try {
-      // melakukan apapun disini
+      console.log("Isi request");
+      console.log(req);
+      const { minimarket = "", order = "" } = req.body;
+      const payload = {
+        uploadBukti: {
+          name: '',
+          filename: '',
+        },
+      };
+      payload.uploadBukti.name = minimarket;
 
-      
+      if (req.file) {   // check jika file bukti apakah ada
+        let tmp_path = req.file.path;
+        let originalExt =
+          req.file.originalname.split(".")[
+            req.file.originalname.split(".").length - 1
+          ];
+        let fileName = req.file.filename + "." + originalExt;
+        let target_path = path.resolve(
+          config.rootPath,
+          `public/uploads/bukti/${fileName}`
+        );
+        payload.uploadBukti.filename = fileName;
+
+        const src = fs.createReadStream(tmp_path);
+        const dest = fs.createWriteStream(target_path);
+
+        src.pipe(dest);
+        src.on("end", async () => {
+          try {
+            // let transaction = await Transaction.findOne({ _id: order });
+            // let currentImage = `${config.rootPath}/public/uploads/bukti/${player.avatar}`;
+            // if (fs.existsSync(currentImage)) {
+            //   fs.unlinkSync(currentImage);
+            // }
+
+            transaction = await Transaction.findOneAndUpdate(
+              { _id: order },
+              payload,
+              {
+                new: true,
+                runValidators: true,
+              }
+            );
+
+            res.status(201).json({
+              status: true,
+              message: "success upload bukti",
+              // data: {
+              //   id: player._id,
+              //   name: player.name,
+              //   phoneNumber: player.phoneNumber,
+              //   avatar: player.avatar,
+              // },
+            });
+          } catch (error) {
+            res
+              .status(500)
+              .json({ message: error.message || "Internal server error" });
+          }
+        });
+      } else {
+        res
+          .status(500)
+          .json({ message: error.message || "Error tidak dapat upload bukti pembayaran" });
+      }
     } catch (error) {
       res
         .status(500)
