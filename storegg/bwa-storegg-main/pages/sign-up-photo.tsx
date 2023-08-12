@@ -34,7 +34,8 @@ export default function SignUpPhoto() {
     setLocalForm(JSON.parse(getLocalForm!));
   }, []);
 
-  const onSubmit = async () => {
+  const onSubmit = async (event: { preventDefault: () => void; }) => {
+    event.preventDefault();
     const getLocalForm = await localStorage.getItem('user-form');
     const form = JSON.parse(getLocalForm!);
     const data = new FormData();  // pakai FormData untuk mendukung multipart/form-data

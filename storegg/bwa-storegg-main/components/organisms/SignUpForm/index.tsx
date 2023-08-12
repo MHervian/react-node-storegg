@@ -12,7 +12,8 @@ export default function SignUpForm() {
     label: cx('form-label text-lg fw-medium color-palette-1 mb-10'),
   };
 
-  const onSubmit = () => {
+  const onSubmit = (event: { preventDefault: () => void; }) => {
+    event.preventDefault();
     const userForm = {
       email,
       name,

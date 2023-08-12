@@ -40,7 +40,8 @@ export default function UploadBuktiContent() {
         }
     }, []);
 
-    const onSubmit = async () => {
+    const onSubmit = async (event: { preventDefault: () => void; }) => {
+        event.preventDefault();
         if (minimarket == "" || imagePreview == null || order == "") {
             // tampilkan error
             toast.error('Upload gagal. Cek ulang yang diisi');

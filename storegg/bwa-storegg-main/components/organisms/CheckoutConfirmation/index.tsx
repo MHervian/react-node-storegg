@@ -7,7 +7,8 @@ export default function CheckoutConfirmation() {
   const [checkbox, setCheckBox] = useState(false);
   const router = useRouter();
 
-  const onSubmit = async () => {
+  const onSubmit = async (event: { preventDefault: () => void; }) => {
+    event.preventDefault();
     const dataItemLocal = localStorage.getItem('data-item');
     const dataTopUpLocal = localStorage.getItem('data-topup');
 
